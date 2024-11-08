@@ -30,7 +30,7 @@
 
   .dark {
     --background: 255 0% 0%;
-    --foreground: 0 0% 98%;
+    --foreground: 0 0% 80%;
     --card: 240 3.7% 12.2%;
     --card-foreground: 0 0% 10%;
     --card-hover: 0 0% 16.5%;

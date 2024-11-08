@@ -7,7 +7,7 @@ export enum NavCategory {
 export type NavItemModel = { 
   thumbnail: string;
   title: string;
-  description: string;
+  description?: string;
   href: string;
   category: NavCategory;
 }

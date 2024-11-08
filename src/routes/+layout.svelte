@@ -3,16 +3,16 @@
 	let { children } = $props();
 	import SideNav from '$lib/components/Sidenav.svelte';
 	import { navItems as items } from '$lib/data/navItems';
-	import TopNav from '$lib/components/TopNav.svelte';
+	import Topnav from '$lib/components/Topnav.svelte';
 </script>
 
 <div
-	class="text-foreground grid h-full min-h-screen grid-cols-[250px_1fr] grid-rows-[auto_1fr_auto] text-white bg-background"
+	class="grid h-full min-h-screen grid-cols-[300px_1fr] grid-rows-[auto_1fr_auto] bg-background text-foreground text-white gap-1"
 >
-	<TopNav />
+	<Topnav />
 	<SideNav {items} />
 	<main class="min-h-full overflow-auto">
 		{@render children()}
 	</main>
-	<TopNav />
+	<Topnav />
 </div>
