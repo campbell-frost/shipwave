@@ -16,7 +16,6 @@
 			document.documentElement.setAttribute('style', 'color-scheme: dark');
 			document.documentElement.classList.add('dark');
 			localStorage.setItem('theme', 'dark');
-			console.log('dark');
 		} else {
 			document.documentElement.removeAttribute('style');
 			document.documentElement.classList.remove('dark');
