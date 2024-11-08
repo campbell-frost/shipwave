@@ -6,9 +6,9 @@
 	import TopNav from '$lib/components/TopNav.svelte';
 </script>
 
-<div class="grid h-full min-h-screen grid-cols-[250px_1fr] grid-rows-[auto_1fr_auto]">
+<div class="grid h-full min-h-screen grid-cols-[250px_1fr] grid-rows-[auto_1fr_auto] text-white bg-background text-foreground">
+	<TopNav  />
 	<SideNav {items} />
-	<TopNav />
 	<main class="overflow-auto min-h-full">
 		{@render children()}
 	</main>
