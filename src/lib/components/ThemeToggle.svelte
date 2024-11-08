@@ -3,12 +3,23 @@
 	let darkMode = $state(false);
 
 	$effect(() => {
+		const savedTheme = localStorage.getItem('theme');
+		if (savedTheme) {
+			darkMode = savedTheme === 'dark';
+		} else {
+			darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+		}
+	});
+
+	$effect(() => {
 		if (darkMode) {
 			document.documentElement.setAttribute('style', 'color-scheme: dark');
+			document.documentElement.classList.add('dark');
 			localStorage.setItem('theme', 'dark');
 			console.log('dark');
 		} else {
 			document.documentElement.removeAttribute('style');
+			document.documentElement.classList.remove('dark');
 			localStorage.setItem('theme', 'light');
 		}
 	});
