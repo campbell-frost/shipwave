@@ -1,6 +1,5 @@
 <script>
-	import { Ellipsis, House } from 'lucide-svelte';
-	import { Search } from 'lucide-svelte';
+	import { Ellipsis, House, Search } from 'lucide-svelte';
 	import ThemeToggle from './ThemeToggle.svelte';
 </script>
 

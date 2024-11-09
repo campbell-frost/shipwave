@@ -1,5 +1,6 @@
 <script>
 	import { Moon, Sun } from 'lucide-svelte';
+
 	let darkMode = $state(false);
 
 	$effect(() => {
