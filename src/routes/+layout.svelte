@@ -2,8 +2,11 @@
 	import '../app.css';
 	let { children } = $props();
 	import SideNav from '$lib/components/Sidenav.svelte';
+	import Playback from '$lib/components/Playback.svelte';
 	import { navItems as items } from '$lib/data/navItems';
 	import Topnav from '$lib/components/Topnav.svelte';
+	import { playbackData } from '$lib/data/playbackData';
+	import Bottomnav from '$lib/components/Bottomnav.svelte';
 </script>
 
 <div
@@ -14,5 +17,5 @@
 	<main class="min-h-full overflow-auto">
 		{@render children()}
 	</main>
-	<Topnav />
+	<Bottomnav {...playbackData} />
 </div>
