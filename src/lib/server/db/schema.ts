@@ -1,60 +1,67 @@
-import { pgTable, serial, text, integer, timestamp } from 'drizzle-orm/pg-core';
+import { sqliteTable, text, integer, blob } from 'drizzle-orm/sqlite-core';
 
-export const user = pgTable('user', {
+export const user = sqliteTable('user', {
 	id: text('id').primaryKey(),
+	createdAt: integer('created_at', { mode: 'timestamp' }).notNull(),
+	updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull(),
 	age: integer('age'),
 	username: text('username').notNull().unique(),
 	passwordHash: text('password_hash').notNull()
 });
 
-export const session = pgTable('session', {
+export const session = sqliteTable('session', {
 	id: text('id').primaryKey(),
+	createdAt: integer('created_at', { mode: 'timestamp' }).notNull(),
+	updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull(),
 	userId: text('user_id')
 		.notNull()
 		.references(() => user.id),
-	expiresAt: timestamp('expires_at', { withTimezone: true, mode: 'date' }).notNull()
+	expiresAt: integer('expires_at', { mode: 'timestamp' }).notNull()
 });
 
-export const playlist = pgTable('playlist', {
+export const artist = sqliteTable('artist', {
 	id: text('id').primaryKey(),
+	createdAt: integer('created_at', { mode: 'timestamp' }).notNull(),
+	updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull(),
 	name: text('name').notNull(),
-	userId: text('user_id')
-		.notNull()
-		.references(() => user.id)
+	description: text('description')
 });
 
-export const artist = pgTable('artist', {
+export const album = sqliteTable('album', {
 	id: text('id').primaryKey(),
-	name: text('name').notNull()
-});
-
-export const album = pgTable('album', {
-	id: text('id').primaryKey(),
+	createdAt: integer('created_at', { mode: 'timestamp' }).notNull(),
+	updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull(),
 	name: text('name').notNull(),
 	artistId: text('artist_id')
 		.notNull()
-		.references(() => artist.id)
+		.references(() => artist.id),
 });
 
-export const song = pgTable('song', {
+export const song = sqliteTable('song', {
 	id: text('id').primaryKey(),
-	title: text('title').notNull(),
+	createdAt: integer('created_at', { mode: 'timestamp' }).notNull(),
+	updatedAt: integer('updated_at', { mode: 'timestamp' }).notNull(),
+	userId: text('user_id')
+		.notNull()
+		.references(() => user.id),
 	artistId: text('artist_id')
 		.notNull()
 		.references(() => artist.id),
 	albumId: text('album_id')
-		.notNull()
-		.references(() => album.id)
+		.references(() => album.id),
+	name: text('name').notNull(),
+	bytes: blob('bytes').notNull(),
+	duration: integer('duration_seconds'),
+	trackNumber: integer('track_number'),
+	fileFormat: text('file_format').notNull()
 });
 
 export type Session = typeof session.$inferSelect;
 
 export type User = typeof user.$inferSelect;
 
-export type Song = typeof song.$inferSelect;
+export type Artist = typeof artist.$inferSelect;
 
 export type Album = typeof album.$inferSelect;
 
-export type Artist = typeof artist.$inferSelect;
-
-export type Playlist = typeof playlist.$inferSelect;
+export type Song = typeof song.$inferSelect;	
