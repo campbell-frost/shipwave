@@ -6,7 +6,7 @@
 </script>
 
 <div
-	class="col-span-2 grid w-full grid-cols-3 items-center justify-between gap-x-8 bg-background p-2"
+	class="col-span-2 grid w-full grid-cols-3 items-center justify-between gap-x-8 bg-background"
 >
 	<div class="flex items-center">
 		<img src={thumbnail} alt={title} class="h-16 w-16 rounded-lg" />

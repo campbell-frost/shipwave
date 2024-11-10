@@ -3,7 +3,7 @@
 	import ThemeToggle from './ThemeToggle.svelte';
 </script>
 
-<div class="col-span-2 flex h-16 w-full items-center justify-between gap-x-8 px-12">
+<div class="col-span-2 flex h-16 w-full items-center justify-between gap-x-8 bg-background">
 	<button class="rounded-md p-2 transition-colors hover:bg-card-hover">
 		<Ellipsis />
 	</button>

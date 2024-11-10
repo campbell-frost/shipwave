@@ -2,7 +2,6 @@
 	import '../app.css';
 	let { children } = $props();
 	import SideNav from '$lib/components/Sidenav.svelte';
-	import Playback from '$lib/components/Playback.svelte';
 	import { navItems as items } from '$lib/data/navItems';
 	import Topnav from '$lib/components/Topnav.svelte';
 	import { playbackData } from '$lib/data/playbackData';
@@ -10,7 +9,7 @@
 </script>
 
 <div
-	class="grid h-full min-h-screen grid-cols-[300px_1fr] grid-rows-[auto_1fr_auto] bg-background text-foreground text-white gap-1"
+	class="grid h-full min-h-screen grid-cols-[1fr_1fr] grid-rows-[auto_1fr_auto] gap-2 bg-background p-2 text-foreground text-white"
 >
 	<Topnav />
 	<SideNav {items} />

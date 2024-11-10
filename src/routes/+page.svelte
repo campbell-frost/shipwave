@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
 	import type { PageData } from './$types';
 	import type { Song } from '$lib/server/db/schema';
 	let { data } = $props<{ data: PageData }>();
@@ -34,7 +33,7 @@
 	};
 </script>
 
-<div class="flex min-h-full flex-col items-center justify-center rounded-lg p-4">
+<div class="flex min-h-full flex-col items-center justify-center rounded-lg bg-card p-4">
 	<button
 		class="rounded-md bg-blue-500 p-2 text-white hover:bg-blue-600 active:bg-blue-700"
 		onclick={createSong}
