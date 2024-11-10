@@ -6,13 +6,19 @@
 	import Topnav from '$lib/components/Topnav.svelte';
 	import { playbackData } from '$lib/data/playbackData';
 	import Bottomnav from '$lib/components/Bottomnav.svelte';
-</script>
 
+	let isSideNavCollapsed = $state(false);
+</script>
 <div
-	class="grid h-full min-h-screen grid-cols-[1fr_1fr] grid-rows-[auto_1fr_auto] gap-2 bg-background p-2 text-foreground text-white"
+	class="grid h-full min-h-screen gap-2 bg-background p-2 text-foreground text-white"
+	style="grid-template-columns: {isSideNavCollapsed ? '75px' : '350px'} 1fr; grid-template-rows: auto 1fr auto;"
 >
 	<Topnav />
-	<SideNav {items} />
+	<SideNav 
+		{items} 
+		isCollapsed={isSideNavCollapsed}
+		onToggle={() => isSideNavCollapsed = !isSideNavCollapsed} 
+	/>
 	<main class="min-h-full overflow-auto">
 		{@render children()}
 	</main>

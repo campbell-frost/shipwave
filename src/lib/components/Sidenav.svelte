@@ -1,25 +1,22 @@
 <script lang="ts">
 	import { NavCategory, type NavItemModel } from '$lib/data/types';
-	import { ArrowRight, Library, List, Plus, Search } from 'lucide-svelte';
+	import { ArrowRight, Library, LibraryBig, List, Plus, Search } from 'lucide-svelte';
 
-	interface Items {
+	interface Props {
 		items: NavItemModel[];
+		isCollapsed: boolean;
+		onToggle: () => void;
 	}
 
-	let { items }: Items = $props();
-
-	let isCollapsed = $state(false);
+	let { items, isCollapsed, onToggle }: Props = $props();
 
 	const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 </script>
 
-<nav class={`flex flex-col rounded-md bg-zinc-900 px-3`}>
-	<div class="">
+<nav class="flex flex-col rounded-md bg-card">
+	<div class="px-3">
 		<div class="px flex items-center justify-between py-3 font-bold text-foreground">
-			<button
-				class="text-bold flex items-center gap-x-2 pl-3"
-				onclick={() => (isCollapsed = !isCollapsed)}
-			>
+			<button class="text-bold flex items-center gap-x-2 pl-3" onclick={onToggle}>
 				<Library />
 				{#if !isCollapsed}
 					<h2>Your Library</h2>
@@ -33,13 +30,13 @@
 		</div>
 		{#if !isCollapsed}
 			<div class="mb-4 flex items-center justify-between">
-				<button class="rounded-full bg-card-hover px-2 py-[.33rem] text-sm font-semibold"
+				<button class="rounded-full bg-card-hover px-3 py-[.33rem] text-sm font-semibold"
 					>Playlists</button
 				>
-				<button class="rounded-full bg-card-hover px-2 py-[.33rem] text-sm font-semibold"
+				<button class="rounded-full bg-card-hover px-3 py-[.33rem] text-sm font-semibold"
 					>Artists</button
 				>
-				<button class="rounded-full bg-card-hover px-2 py-[.33rem] text-sm font-semibold"
+				<button class="rounded-full bg-card-hover px-3 py-[.33rem] text-sm font-semibold"
 					>Albums</button
 				>
 			</div>
@@ -60,7 +57,9 @@
 	</div>
 	<div class="top-3">
 		{#each items as item}
-			<div class="group mb-3 flex rounded-lg p-2 hover:bg-card-hover sm:p-0">
+			<div
+				class={`group mb-3 flex rounded-lg p-2 mx-1 hover:bg-card-hover ${isCollapsed && 'hover:bg-transparent '}`}
+			>
 				{#if item.category === NavCategory.Artist}
 					<img
 						src={item.thumbnail}
