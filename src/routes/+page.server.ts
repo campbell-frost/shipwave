@@ -4,8 +4,13 @@ import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async () => {
   try {
-    const songs = await db.select().from(song);
-    return { songs };
+    const loadedSongs = await db.select().from(song);
+    return {
+      songs: loadedSongs.map(song => ({
+        ...song,
+        bytes: Buffer.from(song.bytes as Buffer).toString('base64')
+      }))
+    };
   } catch (error) {
     console.error('Failed to load songs:', error);
     return { songs: [] };
