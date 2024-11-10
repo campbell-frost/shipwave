@@ -9,7 +9,9 @@
 	</button>
 	<div class="flex items-center gap-x-8">
 		<button class="rounded-md p-2 transition-colors hover:bg-card-hover">
-			<House />
+			<a href="/">
+				<House />
+			</a>
 		</button>
 		<div
 			class="flex items-center justify-between gap-x-2 rounded-full bg-card px-4 py-3 transition-colors hover:border-primary hover:bg-card-hover"
