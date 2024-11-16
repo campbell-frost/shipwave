@@ -3,44 +3,48 @@
 	import type { Song } from '$lib/server/db/schema';
 	let { data } = $props<{ data: PageData }>();
 
-	const bytes = new Uint8Array([
-		0x49, 0x44, 0x33, 0x03, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xff, 0xfb, 0x90, 0x64, 0x52, 0x49,
-		0x46, 0x46, 0x57, 0x41, 0x56, 0x45, 0x66, 0x6d, 0x74, 0x20, 0x10, 0x00, 0x00, 0x00
-	]);
+	let audioUrl: string | null = null;
 
-	const songToCreate: Song = {
-		id: crypto.randomUUID(),
-		name: 'test',
-		userId: '6ad6150c-66c9-4509-9354-91bbba1c2dc3',
-		bytes,
-		duration: 10000,
-		trackNumber: 0,
-		fileFormat: 'mp3'
+	let fileInput: HTMLInputElement;
+
+	const openFileDialog = () => {
+		fileInput.click();
 	};
 
-	const createSong = async () => {
-		try {
-			await fetch('?/createSong', {
-				method: 'POST',
-				body: JSON.stringify({
-					...songToCreate,
-					bytes: Array.from(bytes)
-				})
-			});
-		} catch (error) {
-			console.error(error);
-		}
+	const handleFileSelect = async (event: Event) => {
+		const files = (event.target as HTMLInputElement).files;
+		console.log(files);
+	};
+
+
+	const handleDrop = (e: DragEvent) => {
+		e.preventDefault();
+		console.log((e.target as HTMLInputElement).files);
 	};
 </script>
 
 <div class="flex min-h-full flex-col items-center justify-center rounded-lg bg-card p-4">
-	<button
-		class="rounded-md bg-blue-500 p-2 text-white hover:bg-blue-600 active:bg-blue-700"
-		onclick={createSong}
+	<div
+		class="flex w-full flex-1 rounded-lg border-2 border-dashed border-white p-5 transition-all hover:bg-card-hover"
+		ondrop={(e) => handleDrop(e)}
+		ondragover={e => e.preventDefault()}
+		role="button"
+		tabindex="0"
 	>
-		Upload Song
-	</button>
-	{#each data.songs as song}
-		<div>{song.bytes}</div>
-	{/each}
+		<div class="flex w-full flex-col items-center justify-center gap-4">
+			<input
+				type="file"
+				accept="audio/*"
+				bind:this={fileInput}
+				onchange={handleFileSelect}
+				class="hidden"
+			/>
+			<button 
+				onclick={openFileDialog}
+				class="w-full h-full"
+			>
+				<p class="text-sm text-muted-foreground">Upload Song</p>
+			</button>
+		</div>
+	</div>
 </div>

@@ -36,3 +36,9 @@ export enum Flow {
 	Repeat1 = 'repeat-1',
 	Repeat2 = 'repeat-2'
 }
+
+export type FileData = {
+	bytes: number[];
+	duration: number;
+	fileFormat: string;
+}

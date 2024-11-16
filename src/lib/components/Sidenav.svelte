@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { NavCategory, type NavItemModel } from '$lib/data/types';
-	import { ArrowRight, Library, LibraryBig, List, Plus, Search } from 'lucide-svelte';
+	import { Library, List, Plus, Search } from 'lucide-svelte';
+	import { onMount } from 'svelte';
 
 	interface Props {
 		items: NavItemModel[];
@@ -11,6 +12,22 @@
 	let { items, isCollapsed, onToggle }: Props = $props();
 
 	const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
+
+	const handleResize = () => {
+		if (window.innerWidth <= 768 && !isCollapsed) {
+			isCollapsed = true;
+			onToggle();
+		} else if (window.innerWidth > 768 && isCollapsed) {
+			isCollapsed = false;
+			onToggle();
+		}
+	};
+
+	onMount(() => {
+		handleResize();
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
+	});
 </script>
 
 <nav class="flex flex-col rounded-md bg-card">
@@ -58,7 +75,7 @@
 	<div class="top-3">
 		{#each items as item}
 			<div
-				class={`group mb-3 flex rounded-lg p-2 mx-1 hover:bg-card-hover ${isCollapsed && 'hover:bg-transparent '}`}
+				class={`group mx-1 mb-3 flex rounded-lg p-2 hover:bg-card-hover ${isCollapsed && 'hover:bg-transparent '}`}
 			>
 				{#if item.category === NavCategory.Artist}
 					<img
