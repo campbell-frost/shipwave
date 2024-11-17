@@ -31,6 +31,11 @@
 	const formatTime = (time: number) => {
 		return `${Math.floor(time / 60)}:${time % 60}`;
 	};
+
+	const togglePlay = () => {
+		isPlaying = !isPlaying;
+		console.log(isPlaying);
+	};
 </script>
 
 <div class="flex flex-col items-center">
@@ -41,7 +46,7 @@
 		<button>
 			<SkipBack />
 		</button>
-		<button onclick={() => (isPlaying = !isPlaying)}>
+		<button onclick={togglePlay}>
 			{#if isPlaying}
 				<Pause />
 			{:else}

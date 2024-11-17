@@ -4,14 +4,6 @@ export enum NavCategory {
   Album = "album",
 }
 
-export type NavItemModel = {
-  thumbnail: string;
-  title: string;
-  description?: string;
-  href: string;
-  category: NavCategory;
-}
-
 export type DashboardItemModel = {
   thumbnail: string;
   title: string;
@@ -41,4 +33,13 @@ export type FileData = {
 	bytes: number[];
 	duration: number;
 	fileFormat: string;
+}
+
+export type NavItemModel = {
+  thumbnail: string;
+  type: NavCategory;
+  name: string;
+  description?: string;
+  pinned?: boolean;
+  href: string;
 }

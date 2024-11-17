@@ -18,7 +18,7 @@ export const navItems: NavItemModel[] = [
         thumbnail: "https://picsum.photos/400",
         title: "Album 1",
         description: "Album 1 description",
-        href: "/album/1",
+        href: "/album/1", 
         category: NavCategory.Album,
     },
 ];

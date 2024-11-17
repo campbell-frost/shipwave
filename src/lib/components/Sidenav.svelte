@@ -2,14 +2,13 @@
 	import { NavCategory, type NavItemModel } from '$lib/data/types';
 	import { Library, List, Plus, Search } from 'lucide-svelte';
 	import { onMount } from 'svelte';
-
+	import { navItems as items } from '$lib/data/navItems';
 	interface Props {
-		items: NavItemModel[];
 		isCollapsed: boolean;
 		onToggle: () => void;
 	}
 
-	let { items, isCollapsed, onToggle }: Props = $props();
+	let { isCollapsed, onToggle }: Props = $props();
 
 	const capitalize = (str: string) => str.charAt(0).toUpperCase() + str.slice(1);
 
@@ -22,12 +21,12 @@
 			onToggle();
 		}
 	};
-
 	onMount(() => {
 		handleResize();
 		window.addEventListener('resize', handleResize);
 		return () => window.removeEventListener('resize', handleResize);
 	});
+
 </script>
 
 <nav class="flex flex-col rounded-md bg-card">
@@ -62,7 +61,7 @@
 			{#if !isCollapsed}
 				<Search size={20} />
 				<div
-					class="flex cursor-pointer gap-x-2 transition-all transition-colors hover:text-primary"
+					class="flex cursor-pointer gap-x-2 transition-all hover:text-primary"
 				>
 					<p>Recents</p>
 					<button>

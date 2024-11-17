@@ -2,7 +2,6 @@
 	import '../app.css';
 	let { children } = $props();
 	import SideNav from '$lib/components/Sidenav.svelte';
-	import { navItems as items } from '$lib/data/navItems';
 	import Topnav from '$lib/components/Topnav.svelte';
 	import { playbackData } from '$lib/data/playbackData';
 	import Bottomnav from '$lib/components/Bottomnav.svelte';
@@ -15,7 +14,6 @@
 >
 	<Topnav />
 	<SideNav 
-		{items} 
 		isCollapsed={isSideNavCollapsed}
 		onToggle={() => isSideNavCollapsed = !isSideNavCollapsed} 
 	/>

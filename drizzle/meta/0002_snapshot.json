@@ -1,8 +1,8 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "161df511-146d-4e0f-b89f-cc3a322ba704",
-  "prevId": "a36f50f1-e8fe-4f60-a5f6-ea5a872ce2ee",
+  "id": "436fd609-6883-4984-b2f9-40bfe8ef4802",
+  "prevId": "e38c6b30-c95b-4bcd-85ac-e2bb1a9de0d4",
   "tables": {
     "session": {
       "name": "session",
@@ -49,27 +49,13 @@
       "uniqueConstraints": {},
       "checkConstraints": {}
     },
-    "song": {
-      "name": "song",
+    "track": {
+      "name": "track",
       "columns": {
         "id": {
           "name": "id",
           "type": "text",
           "primaryKey": true,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "created_at": {
-          "name": "created_at",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": true,
-          "autoincrement": false
-        },
-        "updated_at": {
-          "name": "updated_at",
-          "type": "integer",
-          "primaryKey": false,
           "notNull": true,
           "autoincrement": false
         },
@@ -118,9 +104,9 @@
       },
       "indexes": {},
       "foreignKeys": {
-        "song_user_id_user_id_fk": {
-          "name": "song_user_id_user_id_fk",
-          "tableFrom": "song",
+        "track_user_id_user_id_fk": {
+          "name": "track_user_id_user_id_fk",
+          "tableFrom": "track",
           "tableTo": "user",
           "columnsFrom": [
             "user_id"
@@ -144,13 +130,6 @@
           "type": "text",
           "primaryKey": true,
           "notNull": true,
-          "autoincrement": false
-        },
-        "age": {
-          "name": "age",
-          "type": "integer",
-          "primaryKey": false,
-          "notNull": false,
           "autoincrement": false
         },
         "username": {
