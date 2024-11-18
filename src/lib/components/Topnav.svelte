@@ -1,5 +1,5 @@
 <script>
-	import { Ellipsis, House, Search } from 'lucide-svelte';
+	import { Ellipsis, House, Search, User } from 'lucide-svelte';
 	import ThemeToggle from './ThemeToggle.svelte';
 </script>
 
@@ -24,5 +24,10 @@
 			/>
 		</div>
 	</div>
-	<ThemeToggle />
+	<div class="flex items-center gap-x-2">
+		<ThemeToggle />
+		<a href="/auth"> 
+			<User />
+		</a>
+	</div>
 </div>
